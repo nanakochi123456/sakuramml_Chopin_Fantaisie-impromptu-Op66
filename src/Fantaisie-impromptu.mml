@@ -1,0 +1,566 @@
+// ショパン 幻想即興曲 Op66	
+///////////////////////////
+
+Int DEBUG=0			// 1=メトロノーム 2=雑音付き
+Int KEY=0			// 移調
+Int RTEMPO=10		// テンポをRTEMPO%範囲内でランダムにする 0で無効
+Int TEMPORATIO=100	// テンポを％で変化させる 70%以下にしてはならない
+Int TINY=0			// MIDIを軽くする TWM2時必須
+Int IGNORETEMPO=0		// テンポ変化を無効にする
+// Tempo 65
+Int TEMPODIFF=0		// テンポ差分 -5以下にしてはならない
+Int LOOP=39			// ループ回数 39
+System.RandomSeed=1	// 毎回同じ乱数を出す 発音タイミングと音長と音量とペダルのリリースとテンポが乱数
+
+Include(Fantaisie-impromptu.h)
+
+////////////////////////////
+// MML
+
+#PART1_16={
+	TmpChangeR(168)
+	r1
+	r1
+	TmpChangeR(40)TmpChangeR(200,!1)
+	TmpChangeR(210,!1)
+}
+
+#PEDAL1={
+	Sub{
+		#PEDALON r1 r1 #PEDALOFF
+		#PEDALON r1 r1 #PEDALOFF
+	}
+}
+
+#PART1_1={
+	#R [4 r1]
+}
+
+
+#PART1_2={
+	#R o3 #SF Q(70,72) #PEDAL1
+	l1^1 ROCT(g#)
+	l12 ROCT(c#)#F RMDCresc(-2)RMD(>g#>c#ec#<g# !c#g#>c#ec#<g#)
+	RMDCresc(-1)RMD(!c#g#>c#ec#<g# !c#g#>c#ec#<g#)
+}
+
+#PART2_16={
+	TmpChangeR(210)TmpChangeR(212,!1)
+	TmpChangeR(215,!1)
+	TmpChangeR(210,!1^1)
+	//
+	TmpChangeR(215,!1^1)
+	//
+	TmpChangeR(210,!1)
+	TmpChangeR(200,!2.)TmpChangeR(130,!4)
+
+	TmpChangeR(140)TmpChangeR(195,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(195,!4)TmpChangeR(210,!2.)
+	TmpChangeR(170)TmpChangeR(195,!4)TmpChangeR(215,!2.)
+	TmpChangeR(170)TmpChangeR(190,!4)TmpChangeR(200,!2^8.)TmpChangeR(70,!16)
+	TmpChangeR(140)TmpChangeR(180,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!2)TmpChangeR(120)TmpChangeR(190,!2)
+	TmpChangeR(150)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(110)TmpChangeR(170,!4)TmpChangeR(200,!2.)
+	TmpChangeR(140)TmpChangeR(170,!4)TmpChangeR(135,!2.)
+}
+
+#PART2a_16={
+	TmpChangeR(130)TmpChangeR(160,!2)TmpChangeR(212,!2)
+	TmpChangeR(215,!1)
+	TmpChangeR(210,!1^1)
+	//
+	TmpChangeR(215,!1^1)
+	//
+	TmpChangeR(210,!1)
+	TmpChangeR(200,!2.)TmpChangeR(130,!4)
+
+	TmpChangeR(140)TmpChangeR(195,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(195,!4)TmpChangeR(210,!2.)
+	TmpChangeR(170)TmpChangeR(195,!4)TmpChangeR(215,!2.)
+	TmpChangeR(170)TmpChangeR(190,!4)TmpChangeR(200,!2^8.)TmpChangeR(70,!16)
+	TmpChangeR(140)TmpChangeR(180,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!2)TmpChangeR(120)TmpChangeR(190,!2)
+	TmpChangeR(150)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(160)TmpChangeR(190,!4)TmpChangeR(210,!2.)
+	TmpChangeR(110)TmpChangeR(170,!4)TmpChangeR(200,!2.)
+	TmpChangeR(140)TmpChangeR(170,!4)TmpChangeR(135,!2.)
+}
+
+#PEDAL2={
+	Sub{
+		[16 #PEDALON r2 #PEDALOFF]
+		[24 #PEDALON r2 #PEDALOFF]
+	}
+}
+
+#PART2_1={
+	o5 #FR l16 Q(70,72) #PEDAL2
+	RMD(rg#ag#gg#>c#e d#c#d#c#cc#eg#<)
+	RMD(rg#ag#gg#>c#e d#c#d#c#cc#eg#<)
+	RMDCresc(3)RMD(ra>c#d#f#a>c#d#)RMDCresc(-1)RMD(bag#f#ed#f#c#)
+	RMD(cd#<ag#f#aed# f#c#cd# <ag#ba8)
+	#FR RMD(g#ag#gg#>c#e d#c#d#c#cc#eg#<)
+	RMD(rg#a#g#gg#>c#e d#c#d#c#cc#eg#)
+	RMDCresc(3)RMD(d#ed#dd#ba#g# g>ed#c#<ba#g#g)
+	#FFR RMDCresc(-3)RMD(a#g#bd)#FFR RMDCresc(-3)RMD(ed#g#<a#)#FFR RMDCresc(-3)RMD(>c#<b>d#<g)RMD(a#g#gg#)
+
+	#FSR o5 RMD(!g#>g#cc#< !f#>f#cc#< !f>fcc#< !f#>f#cc#<)
+	RMD(!c#>c#<f#a !d#>d#<f#a !e>e<g#b !g#>g#<b>e<)
+	RMD(!g#>g#cc#< !f#>f#cc#< !f>fcc#< !f#>f#cc#<)
+	RMD(!f>f<b>d#< !f#>f#<b>d#< !a>a<b>e<)RMDCresc(-6)RMD(!g#>g#<b>e<)
+	#PR o5 RMD(g#>!g#cc#< f#>!f#cc#< f>!fcc#< f#>!f#cc#<)
+	RMD(c#>!c#<f#a d#>!d#<f#a)RMDCresc(6)RMD(e>!e<g#b g#>!g#<b>e<)
+	RMD(g#>!g#cc#< f#>!f#cc#)#FFR RMDCresc(-2)RMD(d#>!d#<f#a c#>!c#<f#a)
+	RMD(c#>!c#<d#f# c>!c<d#f#)#MR RMDCresc(1)RMD(c>!c<d#f# c>!c<d#f#)
+	RMD(c>!c<d#f# <b>!bd#f# <b>!bd#f# <a#>!a#d#f#)
+	RMDCresc(-1)RMD(<a#>!a#d#f# <a>!ad#f# <a>!ad#f# <a>!ad#f#)
+	#PR RMD(c>!c<d#f# <b>!bd#f# <b>!bd#f# <a#>!a#d#f#)
+	RMD(<a#>!a#d#f# <a>!ad#f# <a>!ad#f# <g#>!g#d#f#)
+}
+
+#PART2_2={
+	o4 #PPS l12 Q(70,72) #PEDAL2
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!d#a>c#f#c#<a f#>c#d#f#d#c#<)
+	RMD(<!g#>d#f#>c<f#d# <!g#>d#f#>c<f#d#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!c#g#a#>e<a#g# eg#a#>c#<a#g#)
+	RMD(!d#g#b>d#<bg# d#a#>c#gc#<a#)
+	RMD(<!g#>d#g#bg#d# <g#>d#g#bg#d#)
+
+	RMD(<!a>c#f#af#c# <!a>c#f#af#c#)
+	RMD(<!b>f#abaf# <!eb>eg#e<b>)
+	RMD(<!a>c#f#af#c# <!a>c#f#af#c#)
+	RMD(<!b>f#abaf# <!eb>eg#e<b>)
+	#SP RMD(<!a>c#f#af#c# <!a>c#f#af#c#)
+	RMD(<!b>f#abaf#)RMDCresc(4)RMD(<!eb>eg#e<b>)
+	RMD(<!a>c#f#af#c#) #PPS RMD(<!a>d#f#af#d#)
+	RMD(<!g#>d#f#>c<f#d# <!g#>d#f#>c<f#d#)
+	RMDCresc(-1)RMD(<!a>d#f#bf#d# <!a#>d#f#a#f#d#)
+	RMD(!cd#f#af#d# !cd#f#af#d#)
+	#SP RMDCresc(1)RMD(<!a>d#f#bf#d# <!a#>d#f#a#f#d#)
+	RMD(<!b>d#f#af#d#)RMDCresc(-2)RMD(!cd#f#g#f#d#)	
+}
+
+#PART3_16={
+	TmpChangeR(200)TmpChangeR(205,!1)
+	TmpChangeR(210,!1)
+	TmpChangeR(200,!1^1)
+	//
+	TmpChangeR(210,!1^1)
+	//
+	TmpChangeR(215,!1^1)
+	//
+	TmpChangeR(210,!1^2)
+	TmpChangeR(150,!2)
+	TmpChangeR(170)r8TmpChangeR(180)TmpChangeR(200,!8^2.)
+	TmpChangeR(180,!2)TmpChangeR(140,!2)
+	TmpChangeR(90)r8TmpChangeR(110)TmpChangeR(200,!8^2.)
+	TmpChangeR(165,!1^1^4)
+	//
+	TmpChangeR(30,!2.)
+}
+
+#PART3a_16={
+	TmpChangeR(200)TmpChangeR(205,!1)
+	TmpChangeR(210,!1)
+	TmpChangeR(200,!1^1)
+	//
+	TmpChangeR(210,!1^1)
+	//
+	TmpChangeR(215,!1^1)
+	//
+	TmpChangeR(210,!1^2)
+	TmpChangeR(150,!2)
+	TmpChangeR(170)r8TmpChangeR(180)TmpChangeR(200,!8^2.)
+	TmpChangeR(180,!2)TmpChangeR(140,!2)
+	TmpChangeR(90)r8TmpChangeR(110)TmpChangeR(200,!8^2.)
+	TmpChangeR(190,!1^1^4)
+	//
+	TmpChangeR(130,!2.)
+}
+
+#PEDAL3={
+	Sub{
+		[20 #PEDALON r12r12 #PEDALOFF r12 r4]
+		#PEDALON r4. #PEDALOFF2 r8 #PEDALON r2
+		r1 #PEDALOFF
+		#PEDALON r1
+		r1 #PEDALOFF
+		#PEDALON r2. #PEDALOFF #PEDALON r4 #PEDALOFF
+		[#PEDALON r4 #PEDALOFF] #PEDALON r2 #PEDALOFF
+	}
+}
+
+#PART3_1={
+	o5 #FR l16 Q(68,72) #PEDAL3
+	RMD(rg#ag#gg#>c#e d#c#d#c#cc#eg#<)
+	RMD(rg#ag#gg#>c#e d#c#d#c#cc#eg#<)
+	RMDCresc(3)RMD(ra>c#d#f#a>c#d#)RMDCresc(-2)RMD(bag#f#ed#f#c#)
+	RMD(cd#<ag#f#aed# f#c#cd# <ag#ba8)
+	#FR RMDCresc(1)RMD(g#ag#gg#>c#e d#c#d#c#cc#eg#)
+	RMDCresc(-1)RMD(ed#ed#dd#f#a f#ff#fefg#>c#<)
+	RMDCresc(2)RMD(rc#dc#cc#f#a f#ff#fefg#>c#<)
+	RMDCresc(-1)RMD(g#f#g#f#ff#g#>c#< ag#ag#gg#>cd#<)
+	RMDCresc(1)RMD(g#ag#gg#>ed#d c#c<ba#ag#gf#)
+	RMD(ef#ed#e>ed#d c#c<ba#ag#gf#)
+	RMD(g#)r>#FFSR RMD(g#gf#fed# dc#c<ba#ag#g)
+	RMD(f#fed#dc#c<b a#ag#gf#ed#c#)
+	o4RMD(g#8)r8o7RMD(ag#>e<e f#e>c#<c#d#c#g#<g#)
+	RMD(ag#>e<ef#e>c#<c# d#c#g#<g#ag#>e<e)
+	RMDCresc(-1)RMD(f#e>c#<c#d#c#g#<g#> d#c#g#<g#>d#c#a<a>)
+	RMDCresc(-2)RMD(d#c#g#<g#>d#c#g<g> d#c#g#<g#>d#cg#<g#)
+}
+
+#PART3_2={
+	o4 #PPS l12 Q(68,72) #PEDAL3
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!d#a>c#f#c#<a f#>c#d#f#d#c#<)
+	RMD(<!g#>d#f#>c<f#d# <!g#>d#f#>c<f#d#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!f#>c#d#ad#c#< !g#>c#fbfc#<)
+	RMD(!a>c#f#af#c#< !g#>c#fbfc#<)
+	RMDCresc(1)RMD(!a>c#f#af#c#< !cf#g#>d#<g#f#)
+	RMD(!c#g#>c#ec#<g# !d#g#>cf#c<g#)
+	RMD(!eg#>c#ec#<g# !f#>c#d#ad#c#<)
+
+	#FFS o4l8RCD(g#>c#eg#<)r4.#SF RCD(g>c#ea<)r4.
+	r1
+	o2l8ROCT(g#)r8l4o5ROCT(e)ROCT(c#)<ROCT(g#)
+	ROCT(e)ROCT(c#)<ROCT(g#)ROCT(e)
+	ROCT(c#)RCDV(-5)<ROCT(g#)RCDV(-5)ROCT(g#)RCDV(-5)ROCT(a)
+	o3#M RMD(g#gg#2)
+}
+
+#PART3a_2={
+	o4 #PPS l12 Q(68,72) #PEDAL3
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!d#a>c#f#c#<a f#>c#d#f#d#c#<)
+	RMD(<!g#>d#f#>c<f#d# <!g#>d#f#>c<f#d#)
+	RMD(!c#g#>c#ec#<g# eg#>c#ec#<g#)
+	RMD(!f#>c#d#ad#c#< !g#>c#fbfc#<)
+	RMD(!a>c#f#af#c#< !g#>c#fbfc#<)
+	RMDCresc(1)RMD(!a>c#f#af#c#< !cf#g#>d#<g#f#)
+	RMD(!c#g#>c#ec#<g# !d#g#>cf#c<g#)
+	RMD(!eg#>c#ec#<g# !f#>c#d#ad#c#<)
+
+	#FFS o4l8RCD(g#>c#eg#<)r4.#SF RCD(g>c#ea<)r4.
+	r1
+	o2l8ROCT(g#)r8l4o5ROCT(e)ROCT(c#)<ROCT(g#)
+	ROCT(e)ROCT(c#)<ROCT(g#)ROCT(e)
+	ROCT(c#)<ROCT(g#)ROCT(g#)ROCT(a)
+	ROCT(g#)ROCT(g)l2ROCT(g#)
+}
+
+#PART4_16={
+	TmpChangeR(70)TmpChangeR(110,!4)TmpChangeR(125,!2.)
+	TmpChangeR(90,!1)
+
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(100,!2)TmpChangeR(95,!2)
+	[3 TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(80,!2)TmpChangeR(90)TmpChangeR(95,!2)
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	[3 TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(90)TmpChangeR(85,!4..)TmpChangeR(40)r16TmpChangeR(85)TmpChangeR(80,!2)
+	TmpChangeR(95)TmpChangeR(85,!1)
+
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(105,!2)TmpChangeR(95,!2)
+	[TmpChangeR(105)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(40,!4)TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(80,!2)TmpChangeR(90)TmpChangeR(95,!2)
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	[3 TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(90)TmpChangeR(85,!4..)TmpChangeR(40)r16TmpChangeR(85)TmpChangeR(80,!2)
+	TmpChangeR(95)TmpChangeR(85,!1)
+
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(40,!2)
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(85)TmpChangeR(90,!2)TmpChangeR(70)TmpChangeR(45,!2)
+
+	TmpChangeR(85)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(105,!2)TmpChangeR(95,!2)
+	[TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(40,!4)TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(80,!2)TmpChangeR(90)TmpChangeR(95,!2)
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	[3 TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(90)TmpChangeR(85,!4..)TmpChangeR(40)r16TmpChangeR(85)TmpChangeR(80,!2)
+	TmpChangeR(95)TmpChangeR(85,!1)
+
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(40,!2)
+	TmpChangeR(85)TmpChangeR(95,!2)TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(85)TmpChangeR(90,!2)TmpChangeR(70)TmpChangeR(42,!2)
+
+	TmpChangeR(85)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	TmpChangeR(105,!2)TmpChangeR(95,!2)
+	[TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(40,!4)TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(80,!2)TmpChangeR(90)TmpChangeR(95,!2)
+	TmpChangeR(95)r2TmpChangeR(55)r64r64TmpChangeR(95)r16.r8r8r8
+	[3 TmpChangeR(100)TmpChangeR(95,!4)]TmpChangeR(100)TmpChangeR(85,!4)
+	TmpChangeR(90)TmpChangeR(85,!4..)TmpChangeR(40)r16TmpChangeR(85)TmpChangeR(80,!2)
+	TmpChangeR(95)TmpChangeR(75,!2)TmpChangeR(20,!2)
+}
+
+#PEDAL4={
+	Sub{
+		#PEDALON r1 r1 #PEDALOFF
+		[
+			#PEDALON r1 #PEDALOFF
+			#PEDALON r1 #PEDALOFF
+			[4 #PEDALON r4 #PEDALOFF]
+			[#PEDALON r2 #PEDALOFF]
+			#PEDALON r1 #PEDALOFF
+			[4 #PEDALON r4 #PEDALOFF]
+			[#PEDALON r2 #PEDALOFF]
+			[#PEDALON r2 #PEDALOFF]
+		]
+		[8 #PEDALON r2 #PEDALOFF]
+
+		#PEDALON r1 #PEDALOFF
+		#PEDALON r1 #PEDALOFF
+		[4 #PEDALON r4 #PEDALOFF]
+		[#PEDALON r2 #PEDALOFF]
+		#PEDALON r1 #PEDALOFF
+		[4 #PEDALON r4 #PEDALOFF]
+		[#PEDALON r2 #PEDALOFF]
+		[#PEDALON r2 #PEDALOFF]
+
+		[8 #PEDALON r2 #PEDALOFF]
+
+		#PEDALON r1 #PEDALOFF
+		#PEDALON r1 #PEDALOFF
+		[4 #PEDALON r4 #PEDALOFF]
+		[#PEDALON r2 #PEDALOFF]
+		#PEDALON r1 #PEDALOFF
+		[4 #PEDALON r4 #PEDALOFF]
+		[#PEDALON r2 #PEDALOFF]
+		#PEDALON r1 #PEDALOFF
+	}
+}
+
+#PART4_1={
+	o5 #MS l8 Q(68,72) #PEDAL4
+	[2 r1]
+	RMDCresc(1)RMD(a-2)#P RMD(b-64>c64<)#MS RMD(b-16.a->d-e-)
+	RMD(f2a-2)
+	RMDCresc(-1)RMD(g-4f4e-4f8.d-16)
+	RMD(<a-2!b-2^2)
+	#P RMD(b64>c#64<)#MS RMDCresc(1)RMD(b16.b->e-f)
+	RMD(g-4f4e-4f4)
+	RMDCresc(-2)RMD(d-4..c64d-64e-64d-64 f4.e-8)
+	RMD(e-1)<
+
+	#MS RMD(a-2)#P RMD(b-64>c64<)#MS RMDCresc(1)RMD(b-16.a->d-e-)
+	RMD(f2!a-2)
+	RMDCresc(-1)RMD(g-4f4e-8.f64e-64d-64e-64f8.d-16)
+	RMD(<a-2!b-2^2)
+	#P RMD(b64>c#64<)#MS RMDCresc(1)RMD(b16.b->e-f)
+	RMD(g-4f4e-4f4)
+	RMDCresc(-2)RMD(d-4..<g64a-64b-64a-64>)RMD(f4.e-8)
+	RMD(e-2d-4r8)#F RMD(a-8)<
+
+	#FF RMD(a-2)#P RMD(b-64>c64<)#MS RMDCresc(2)RMD(b-8^32a16b-8.>c16<)
+	RMD(a-8)r8 #FFS RMDCresc(-5)o7RMD(c4^14<b-14a-14e14d-14<b-14.>a-28<)
+	RMD(!e-2)#P RMD(>c64<)#MS RMDCresc(1)RMD(b-8^32.a16b-8.>e-16<)
+	RMDCresc(-2)RMD(a-4)r4 RMD(b-4>d-12c12<b-12)
+
+	#MS RMD(a-2)#P RMD(b-64>c64<)#MS RMDCresc(1)RMD(b-16.a->d-e-)
+	RMD(f2!a-2)
+	RMD(g-4f4e-8.f64e-64d-64e-64)RMDCresc(-10)RMD(f8d-8)
+	RMD(<a-2)#F RMD(!b-2^2)
+	#P RMD(b64>c#64<)#MS RMDCresc(1)RMD(b16.b->e-f)
+	RMD(g-4f4e-4f4)
+	RMD(d-4..<g64a-64b-64a-64>)RMDCresc(-2)RMD(f4.e-8)
+	RMD(e-2d-4r8a-8)<
+
+	#FF RMD(a-2)#P RMD(b-64>c64<)#MS RMDCresc(2)RMD(b-8^32a16b-8.>c16<)
+	RMD(a-8)r8 #FFS RMDCresc(-5)o7RMD(c4^14<b-14a-14e14d-14<b-14.>a-28<)
+	RMD(e-2)#P RMD(>c64<)#MS RMD(b-8^32.a16b-8.>e-16<)
+	RMDCresc(-2)RMD(a-4)r4 RMD(b-4>d-12c12<b-12)
+
+	#MS RMD(a-2)#P RMD(b-64>c64<)#MS RMDCresc(1)RMD(b-16.a->d-e-)
+	RMD(f2!a-2)
+	RMD(g-4f4e-8.f64e-64d-64e-64)RMDCresc(-10)RMD(f8d-8)
+	RMD(<a-2)#MS RMD(!b-2^2)
+	#P RMD(b64>c#64<)#MS RMDCresc(2)RMD(b16.b->e-f)
+	RMDCresc(-1)RMD(g-4f4e-4f4)
+	RMD(d-4..<g64a-64b-64a-64> f4.e-8)
+	RMD(e-1)<
+}
+
+#PART4_2={
+	o3 #F l12 Q(68,72) #PEDAL4
+	RMDCresc(-2)RMD(!d-a->d-fa->d- fd-<a-fd-<a-)
+	RMD(d-a->d-fa->d- fd-<a-fd-<)Sub{a-6}r12
+
+	#PP RMD(d->a->ce-c<a- d-a->cg-c<a-)
+	RMD(d-a->d-fd-<a- d-a->fa-f<a-)
+	RMD(>g-e-<a->fd-<a-> e-c<a->d-<a-f<)
+	RMD(a->e-a->c<a-e-< g->g-b->d-<b-g-<)
+	RMD(b->fb->d<b-f< b->b->da-d<b-)
+	RMD(e->g-<b- f>f<a g->e-<b- a->g-c<)
+	RMD(d-a->d-fd-<a- e-g>d-e-d-<g<)
+	RMD(a->e-a->c<a-e-< a->e-g-b-g-e-<)
+
+	o3RMD(a->e-a->c<a-e-< a->a->cg-c<a-)
+	RMD(d-a->d-fd-<a- d-a->fa-f<a-)
+	RMD(>g-e-<a->fd-<a-> e-c<a->d-<a-f<)
+	RMD(a->e-a->c<a-e-< g->g-b->d-<b-g-<)
+	RMD(b->fb->d<b-f< b->b->da-d<b-)
+	RMD(e->g-<b- f>f<a g->e-<b- a->g-c<)
+	RMD(d-a->d-fd-<a- d-a->cg-c<a-)
+	RMD(d-a->cg-c<a- d-a->d-fd-<a-)
+
+	RMD(<a->e-a->c<a-e- <a->e-g>d-<ge-)
+	RMD(<a->e-a->c<a-e-  d-a->d-ed-<a-)
+	RMD(<e->e-a->c<a-e- <e->e-g>d-<ge-)
+	RMD(<a->e-a->c<a-e- <g->g-b->d-<b-g-)
+
+	o3RMD(a->e-a->c<a-e-< >e-a->cg-c<a-)
+	RMD(d-a->d-fd-<a- d-a->fa-f<a-)
+	RMD(>g-e-<a->fd-<a-> e-c<a->d-<a-f<)
+	RMD(a->e-a->c<a-e-< g->g-b->d-<b-g-<)
+	RMD(b->fb->d<b-f< b->b->da-d<b-)
+	RMD(e->g-<b- f>f<a g->e-<b- a->g-c<)
+	RMD(d-a->d-fd-<a- d-a->cg-c<a-)
+	RMD(d-a->cg-c<a- d-a->d-fd-<a-)
+
+	RMD(<a->e-a->c<a-e- <a->e-g>d-<ge-)
+	RMD(<a->e-a->c<a-e-  d-a->d-ed-<a-)
+	RMD(<e->e-a->c<a-e- <e->e-g>d-<ge-)
+	RMD(<a->e-a->c<a-e- <g->g-b->d-<b-g-)
+
+	o3RMD(a->e-a->c<a-e-< a->a->cg-c<a-)
+	RMD(d-a->d-fd-<a- d-a->fa-f<a-)
+	RMD(>g-e-<a->fd-<a-> e-c<a->d-<a-f<)
+	RMD(a->e-a->c<a-e-< g->g-b->d-<b-g-<)
+	RMD(b->fb->d<b-f< b->b->da-d<b-)
+	RMD(e->g-<b- f>f<a g->e-<b- a->g-c<)
+	RMD(d-a->d-fd-<a- d-a->cg-c<a-)
+	RMD(d-a->cg-c<a- d-a->cg-c<a-)
+}
+
+#PART5_16={
+	TmpChangeR(140)TmpChangeR(170,!1)
+	TmpChangeR(175,!1)
+	TmpChangeR(180,!1^1)
+	TmpChangeR(185,!1^1)
+	TmpChangeR(180,!1^1)
+	TmpChangeR(160,!1^1)
+	TmpChangeR(140,!1^1^1^1^1^1^1)
+	TmpChangeR(90,!1)
+	TmpChangeR(50,!1)
+	TmpChangeR(15,!1)
+}
+
+#PEDAL5={
+	Sub{
+		[8 #PEDALON r2 #PEDALOFF]
+		[#PEDALON r1 #PEDALOFF]
+		#PEDALON r1 r1 #PEDALOFF
+		r1r1
+		#PEDALON r1 #PEDALOFF
+		#PEDALON r1 #PEDALOFF
+		#PEDALON r1 #PEDALOFF
+		#PEDALON r1 #PEDALOFF
+		[#PEDALON r2 #PEDALOFF]
+		#PEDALON r2 #PEDALOFF [#PEDALON r4 #PEDALOFF]
+		[4 #PEDALON r1 #PEDALOFF]
+	}
+}
+
+#AR={
+	#FR
+	RMDAV(127,127)
+}
+
+#PART5_1={
+	o5 #AR l16 Q(78.80) #PEDAL5
+	RMD(d#c#g#<g#> ag#>!e<e ag#>!e<e ag#>!d#<d#)
+	RMD(ag#>!d#<d# ag#>!c#<c#)#FR RMD(ed#!g#<g#> ed#!g#<g#>)
+	#AR RMD(d#c#g#<g#> ag#>!e<e ag#>!e<e ag#>!d#<d#)
+	RMD(ag#>!d#<d# ag#>!c#<c#)#FR RMD(ed#!g#<g#> ed#!g#<g#>)
+	#AR RMD(d#c#!g#<g#> ag#>!e<e f#e>!c#<c# ag#>!e<e)
+	#AR RMD(d#c#!g#<g#> ag#>!e<e f#e>!c#<c# ag#>!e<e)
+	#FR [4 RMDV(-1)RMD(f#e>!c#<c# ag#>!c#<c#)]
+	[32 RMDV(-1)RMD(d#c#g#<g#>)]
+	[4 RMD(d#c#g#<f>)]
+	[4 RMD(fd#g#<f#>)]
+}
+
+#PART5_2={
+	o3 #FF l8 Q(68,72) #PEDAL5
+	[4 RMD(!c#>ec#<g# !c#>f#c<g#)]
+	[RMD(!c#>ec#<g# !c#>g#c#<g#)]
+	RMDCresc(-1)[4 RMD(!c#>ec#<g#)]
+
+	#M
+	o3RMD(c#4)r2.
+	r1
+	l1RCD(c#g#)
+	l4RMD(a#g#>c#d#)
+	l1RMD(f)
+	l1RMD(g#)
+	RMDCresc(-3)l2RMD(f#f)
+	l4RMD(d#2fc#)<
+	l1RMD(g#)<
+	ROCT(g#)
+
+	#SP
+	o3l4Sub{RMD(c#)}Sub{r32RMD(g#RMD(}Sub{r32r32>RMD(f#)}Sub{r32r32r32RMD(g#2^1)}Sub{r32r32r32r32>RMD(c)}Sub{r32r32r32r32r32RMD(d#)}r1
+	o3l4Sub{RMD(c#)}Sub{r32RMD(g#)}Sub{r32r32>RMD(f)}Sub{r32r32r32>RMD(c#)}r1
+}
+
+TR(1)
+	#PART1_1
+	#PART2_1
+	#PART3_1
+	#tr1={
+		#PART2_1
+		#PART3_1
+	}
+	LoopPlay(#PART4_1,#tr1)
+	#PART2_1
+	#PART3_1
+	#PART5_1
+
+TR(2)
+	#PART1_2
+	#PART2_2
+	#PART3_2
+	#tr2={
+		#PART2_2
+		#PART3_2
+	}
+	LoopPlay(#PART4_2,#tr2)
+	#PART2_2
+	#PART3a_2
+	#PART5_2
+
+TR(16)
+	#PART1_16
+	#PART2_16
+	#PART3_16
+	#tr16={
+		#PART2a_16
+		#PART3_16
+	}
+	LoopPlay(#PART4_16,#tr16)
+	#PART2a_16
+	#PART3a_16
+	#PART5_16
+
+End
+あああ、テンポ1.1倍で作っちゃったの
+めんどうだから、関数内で100かけて110で割ってリカバリーしたの
